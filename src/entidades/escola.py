@@ -1,45 +1,42 @@
-escolas = []
+escolas = {}
 
-def get_escolas() : return escolas
+def get_escolas():
+    return escolas
 
-def inserir_escola(escola): escolas.append(escola)
+def inserir_escola(escola):
+    cnpj = escola.cnpj
+    if cnpj not in escolas:
+        escolas[cnpj] = escola
+        return True
+    else:
+        print('Escola com CNPJ ' + cnpj + ' já está cadastrada')
+        return False
 
+def selecionar_escola(max_alunos=None, possui_programa_ambiental=None, prefixo_nome=None):
+    filtros = '\nFiltros -- '
+    if max_alunos is not None: filtros += 'máximo de alunos: ' + str(max_alunos)
+    if possui_programa_ambiental in (True, False): filtros += ' - possui programa ambiental: ' + str(possui_programa_ambiental)
+    if prefixo_nome is not None: filtros += ' - prefixo do nome: ' + prefixo_nome
+
+    selecionadas = []
+    for escola in escolas.values():
+        if max_alunos is not None and escola.n_alunos > max_alunos:
+            continue
+        if possui_programa_ambiental in (True, False) and escola.programa_ambiental != possui_programa_ambiental:
+            continue
+        if prefixo_nome and not escola.nome.startswith(prefixo_nome):
+            continue
+        selecionadas.append(escola)
+    return filtros, selecionadas
 
 class Escola:
-    def __init__(self, cnpj, nome, alunos_matriculados, publica=False):
+    def __init__(self, cnpj, nome, n_alunos, programa_ambiental):
         self.cnpj = cnpj
-        self.alunos_matriculados = alunos_matriculados
-        self.publica = publica
         self.nome = nome
-
-
-
+        self.n_alunos = n_alunos
+        self.programa_ambiental = programa_ambiental
 
     def __str__(self):
-        if self.publica: publica_str = 'publica |'
-        else: publica_str = ''
-        formato = '{} {:<8} {} {:<20} {} {:4} {} {}'
-        escola_formatado = formato.format('|', self.cnpj, '|', self.nome, '|', self.alunos_matriculados, '|', publica_str)
-        return escola_formatado
-
-
-
-def selecionar_escola(prefixo_nome = None, alunos_matriculados_minimo = None, publica = None):
-    filtros = '\nFiltros: '
-    if prefixo_nome is not None: filtros += 'prefixo_nome: ' + prefixo_nome
-    if alunos_matriculados_minimo is not None: filtros += ' - alunos_matriculados_minimo: '  + str(alunos_matriculados_minimo)
-    if publica: filtros += ' publica: true '
-    elif publica == False: filtros += ' publica: false'
-
-    escolas_selecionadas = []
-
-    for escola in escolas:
-        if prefixo_nome is not None and not escola.nome.startswith(prefixo_nome): continue
-
-        if alunos_matriculados_minimo is not None and escola.alunos_matriculados < alunos_matriculados_minimo:
-            continue
-        if publica in (True, False) and escola.publica != publica:
-            continue
-        escolas_selecionadas.append(escola)
-
-    return filtros, escolas_selecionadas
+        ambiental = 'sim' if self.programa_ambiental else 'não'
+        formato = '{} {:<22} {} {:<18} {} {:<5} {} {:<3} {}'
+        return formato.format('|', self.nome, '|', self.cnpj, '|', self.n_alunos, '|', ambiental, '|')
