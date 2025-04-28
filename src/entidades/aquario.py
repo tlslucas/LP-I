@@ -1,4 +1,4 @@
-adaquarios = {}
+aquarios = {}
 
 def get_aquarios():
     return aquarios
