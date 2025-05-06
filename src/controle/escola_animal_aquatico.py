@@ -1,7 +1,7 @@
 from src.util.gerais import imprimir_objetos, imprimir_objeto, imprimir_objetos_internos, imprimir_objetos_associação_filtros
 from src.util.data import Data
 from src.entidades.escola import inserir_escola, Escola, get_escolas
-from src.entidades.animal_aquatico import inserir_animal_aquatico, AnimalAquatico, get_animais_aquaticos
+from src.entidades.animal_aquatico import inserir_animais_aquaticos, AnimalAquatico, get_animais_aquaticos
 from src.entidades.aquario import inserir_aquario, Aquario, get_aquarios
 from src.entidades.passeio_turistico import criar_passeio_turistico, get_passeios_turisticos, selecionar_passeios_turisticos
 
@@ -18,56 +18,86 @@ def cadastrar_escolas():
     inserir_escola(Escola('01.234.567/0001-10', 'Instituto Liberdade', 400, False))
 
 def cadastrar_animais_aquaticos():
-    inserir_animal_aquatico(AnimalAquatico('Beta', 'oceano', 19, True))
-    inserir_animal_aquatico(AnimalAquatico('Tubarão', 'oceano', 250, False))
-    inserir_animal_aquatico(AnimalAquatico('Dory', 'mar fechado', 200, False))
-    inserir_animal_aquatico(AnimalAquatico('Nemo', 'mar fechado', 1, False))
-    inserir_animal_aquatico(AnimalAquatico('Golfinho', 'oceano', 150, True))
-    inserir_animal_aquatico(AnimalAquatico('Pirarucu', 'água doce', 220, True))
-    inserir_animal_aquatico(AnimalAquatico('Estrela do Mar', 'mar fechado', 0.5, False))
-    inserir_animal_aquatico(AnimalAquatico('Cavalo-marinho', 'oceano', 0.3, True))
-    inserir_animal_aquatico(AnimalAquatico('Tartaruga Marinha', 'oceano', 200, True))
-    inserir_animal_aquatico(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
+    inserir_animais_aquaticos(AnimalAquatico('Beta', 'oceano', 19, True))
+    inserir_animais_aquaticos(AnimalAquatico('Tubarão', 'oceano', 250, False))
+    inserir_animais_aquaticos(AnimalAquatico('Dory', 'mar fechado', 200, False))
+    inserir_animais_aquaticos(AnimalAquatico('Nemo', 'mar fechado', 1, False))
+    inserir_animais_aquaticos(AnimalAquatico('Golfinho', 'oceano', 150, True))
+    inserir_animais_aquaticos(AnimalAquatico('Pirarucu', 'água doce', 220, True))
+    inserir_animais_aquaticos(AnimalAquatico('Estrela do Mar', 'mar fechado', 0.5, False))
+    inserir_animais_aquaticos(AnimalAquatico('Cavalo-marinho', 'oceano', 0.3, True))
+    inserir_animais_aquaticos(AnimalAquatico('Tartaruga Marinha', 'oceano', 200, True))
+    inserir_animais_aquaticos(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
 
 def cadastrar_aquarios():
     aquario = Aquario('Aqua Mundo', 'Guarujá - SP', 1000)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Tubarão', 'oceano', 250, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Tubarão', 'oceano', 250, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
+
 
     aquario = Aquario('Oceanário de Aracaju', 'Aracaju - SE', 800)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Golfinho', 'oceano', 150, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Tubarão', 'oceano', 250, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Golfinho', 'oceano', 150, True))
 
     aquario = Aquario('Aquário de Ubatuba', 'Ubatuba - SP', 700)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Pirarucu', 'água doce', 220, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Golfinho', 'oceano', 150, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Pirarucu', 'água doce', 220, True))
 
     aquario = Aquario('Projeto Tamar', 'Salvador - BA', 900)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Tartaruga Marinha', 'oceano', 200, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Pirarucu', 'água doce', 220, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Tartaruga Marinha', 'oceano', 200, True))
 
     aquario = Aquario('Aquário de Bonito', 'Recife - PE', 600)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Dory', 'mar fechado', 200, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Tartaruga Marinha', 'oceano', 200, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Dory', 'mar fechado', 200, False))
 
     aquario = Aquario('Sea Life', 'São Paulo - SP', 1200)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Estrela do Mar', 'mar fechado', 0.5, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Dory', 'mar fechado', 200, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Estrela do Mar', 'mar fechado', 0.5, False))
 
     aquario = Aquario('Mundo Submarino', 'Recife - PE', 1500)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Cavalo-marinho', 'oceano', 0.3, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Estrela do Mar', 'mar fechado', 0.5, False))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Cavalo-marinho', 'oceano', 0.3, True))
 
     aquario = Aquario('Aquário Amazônico', 'Manaus - AM', 1300)
     inserir_aquario(aquario)
-    aquario.inserir_animal_aquatico(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Cavalo-marinho', 'oceano', 0.3, True))
+    aquario.inserir_animais_aquaticos(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
 
 def cadastrar_passeios_turisticos():
-    criar_passeio_turistico('Aqua Mundo', 'Tubarão', 'Colégio Alpha', Data(10, 5, 2014))
-    criar_passeio_turistico('Aquário de Bonito', 'Dory', 'Escola Horizonte', Data(12, 5, 2012))
-    criar_passeio_turistico('Sea Life', 'Estrela do Mar', 'Centro Aurora', Data(7, 6, 2022))
-    criar_passeio_turistico('Projeto Tamar', 'Tartaruga Marinha', 'Escola do Futuro', Data(5, 6, 2015))
-    criar_passeio_turistico('Mundo Submarino', 'Cavalo-marinho', 'Instituto Liberdade', Data(30, 5, 2011))
+    criar_passeio_turistico('Aqua Mundo', 'Tubarão', '12.345.678/0001-01', Data(10, 5, 2014))
+    criar_passeio_turistico('Aqua Mundo', 'Peixe-boi', '56.789.012/0001-05', Data(18, 5, 2014))
+
+    criar_passeio_turistico('Aquário de Bonito', 'Dory', '23.456.789/0001-02', Data(12, 5, 2012))
+    criar_passeio_turistico('Aquário de Bonito', 'Tartaruga Marinha', '67.890.123/0001-06', Data(13, 5, 2012))
+
+    criar_passeio_turistico('Sea Life', 'Estrela do Mar', '67.890.123/0001-06', Data(7, 6, 2022))
+    criar_passeio_turistico('Sea Life', 'Dory', '89.012.345/0001-08', Data(21, 9, 2021))
+
+    criar_passeio_turistico('Projeto Tamar', 'Tartaruga Marinha', '90.123.456/0001-09', Data(5, 6, 2015))
+    criar_passeio_turistico('Projeto Tamar', 'Pirarucu', '34.567.890/0001-03', Data(3, 3, 2018))
+
+    criar_passeio_turistico('Mundo Submarino', 'Cavalo-marinho', '01.234.567/0001-10', Data(30, 5, 2011))
+    criar_passeio_turistico('Mundo Submarino', 'Estrela do Mar', '12.345.678/0001-01', Data(1, 6, 2011))
+
+    criar_passeio_turistico('Aquário de Ubatuba', 'Pirarucu', '45.678.901/0001-04', Data(8, 7, 2019))
+    criar_passeio_turistico('Aquário de Ubatuba', 'Golfinho', '23.456.789/0001-02', Data(9, 7, 2019))
+
+    criar_passeio_turistico('Oceanário de Aracaju', 'Golfinho', '78.901.234/0001-07', Data(14, 8, 2020))
+    criar_passeio_turistico('Oceanário de Aracaju', 'Tubarão', '90.123.456/0001-09', Data(15, 8, 2020))
+
+    criar_passeio_turistico('Aquário Amazônico', 'Peixe-boi', '56.789.012/0001-05', Data(15, 11, 2017))
+
+
+
+
 
 def imprimir_somente_para_alinhar_formatação():
  print('\nAquários : nome - cidade - capacidade')

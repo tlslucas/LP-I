@@ -1,5 +1,4 @@
 from src.entidades.aquario import get_aquarios
-from src.entidades.animal_aquatico import get_animais_aquaticos
 from src.entidades.escola import get_escolas
 
 passeios_turisticos = []
@@ -13,30 +12,27 @@ def inserir_passeio_turistico(passeio):
     else:
         print('Passeio turístico já cadastrado --- ' + str(passeio))
 
-def criar_passeio_turistico(nome_aquario, nome_animal, nome_escola, data):
+def criar_passeio_turistico(nome_aquario, nome_animal, cnpj_escola, data):
     aquario = get_aquarios().get(nome_aquario)
-    if not aquario:
+    if aquario is None:
         print('Aquário ' + nome_aquario + ' não cadastrado')
         return
     animal = aquario.animal_aquatico.get(nome_animal)
-    if not animal:
+    if animal is None:
         print('Animal aquático ' + nome_animal + ' não cadastrado no aquário ' + nome_aquario)
         return
-    escola = None
-    for e in get_escolas().values():
-        if e.nome == nome_escola:
-            escola = e
-            break
+    escola = get_escolas().get(cnpj_escola)
     if not escola:
-        print('Escola ' + nome_escola + ' não cadastrada')
+        print('Escola ' + cnpj_escola + ' não cadastrada ')
         return
+    
     passeio = PasseioTuristico(aquario, animal, escola, data)
     inserir_passeio_turistico(passeio)
 
 def selecionar_passeios_turisticos(data_minima_passeio=None, peso_minimo_animal=None,
                                    max_alunos_escola=None, cidade_aquario=None):
     filtros = '\nFiltros -- '
-    if data_minima_passeio: filtros += 'data minima: '+str(data_minima_passeio)
+    if data_minima_passeio: filtros += 'data minima_passeio: '+str(data_minima_passeio)
     if peso_minimo_animal: filtros += f' - peso minimo do animal: '+str(peso_minimo_animal)
     if max_alunos_escola: filtros += f' - máximo de alunos na escola: '+str(max_alunos_escola)
     if cidade_aquario: filtros += f' - cidade do aquário: '+str(cidade_aquario)
@@ -62,12 +58,12 @@ class PasseioTuristico:
         self.data = data
 
     def __str__(self):
-        formato = '{} {:<25} {} {:<18} {} {:<20} {} {:<10} {}'
+        formato = '{} {:<20} {} {:<17} {} {:<19} {} {:<10} {}'
         return formato.format('|', self.aquario.nome, '|', self.animal_aquatico.nome, '|',
                               self.escola.nome, '|', str(self.data), '|')
 
     def str_filtro(self):
-        formato = '{:>5} {} {:<18} {} {:<6} {}'
+        formato = '{:>5} {} {:<14} {} {:<5} {}'
         return self.__str__() + formato.format(self.escola.n_alunos, '|',
                                                self.aquario.cidade, '|',
                                                str(self.animal_aquatico.peso) + 'kg', '|')

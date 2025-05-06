@@ -20,10 +20,10 @@ class Aquario:
         self.animal_aquatico = {}
 
     def __str__(self):
-        formato = '{} {:<25} {} {:<18} {} {:<6} {}'
+        formato = '{} {:<20} {} {:<14} {} {:<4} {}'
         return formato.format('|', self.nome, '|', self.cidade, '|', str(self.capacidade), '|')
 
-    def inserir_animal_aquatico(self, animal):
+    def inserir_animais_aquaticos(self, animal):
         nome_animal = animal.nome
         if nome_animal not in self.animal_aquatico:
             self.animal_aquatico[nome_animal] = animal

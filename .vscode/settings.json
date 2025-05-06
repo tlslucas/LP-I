@@ -1,0 +1,13 @@
+{
+    "editor.inlineSuggest.showToolbar": "always",
+    "editor.suggest.showStatusBar": false,
+    "debug.toolBarLocation": "floating",
+    "notebook.globalToolbar": true,
+    "chat.extensionTools.enabled": true,
+    "zenMode.hideActivityBar": false,
+    "zenMode.hideLineNumbers": false,
+    "zenMode.hideStatusBar": false,
+    "files.autoSave": "afterDelay",
+    "editor.codeActionWidget.showHeaders": true,
+    "window.commandCenter": true
+}
