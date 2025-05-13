@@ -20,6 +20,6 @@ class Escola:
         self.programa_ambiental = programa_ambiental
 
     def __str__(self):
-        ambiental = 'sim'' |' if self.programa_ambiental else ' '
+        ambiental = 'Programa Ambiental'' |' if self.programa_ambiental else ' '
         formato = '{} {:<19} {} {:<18} {} {:<5} {} {:<3}'
         return formato.format('|', self.nome, '|', self.cnpj, '|', self.n_alunos, '|', ambiental)

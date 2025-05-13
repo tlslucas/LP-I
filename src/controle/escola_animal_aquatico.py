@@ -72,30 +72,28 @@ def cadastrar_aquarios():
     aquario.inserir_animais_aquaticos(AnimalAquatico('Peixe-boi', 'água doce', 500, True))
 
 def cadastrar_passeios_turisticos():
-    criar_passeio_turistico('Aqua Mundo', 'Tubarão', '12.345.678/0001-01', Data(10, 5, 2014))
-    criar_passeio_turistico('Aqua Mundo', 'Peixe-boi', '56.789.012/0001-05', Data(18, 5, 2014))
+    criar_passeio_turistico('Aqua Mundo', '12.345.678/0001-01', Data(10, 5, 2014))
+    criar_passeio_turistico('Aqua Mundo', '56.789.012/0001-05', Data(18, 5, 2014))
 
-    criar_passeio_turistico('Aquário de Bonito', 'Dory', '23.456.789/0001-02', Data(12, 5, 2012))
-    criar_passeio_turistico('Aquário de Bonito', 'Tartaruga Marinha', '67.890.123/0001-06', Data(13, 5, 2012))
+    criar_passeio_turistico('Aquário de Bonito', '23.456.789/0001-02', Data(12, 5, 2012))
+    criar_passeio_turistico('Aquário de Bonito', '67.890.123/0001-06', Data(13, 5, 2012))
 
-    criar_passeio_turistico('Sea Life', 'Estrela do Mar', '67.890.123/0001-06', Data(7, 6, 2022))
-    criar_passeio_turistico('Sea Life', 'Dory', '89.012.345/0001-08', Data(21, 9, 2021))
+    criar_passeio_turistico('Sea Life', '67.890.123/0001-06', Data(7, 6, 2022))
+    criar_passeio_turistico('Sea Life', '89.012.345/0001-08', Data(21, 9, 2021))
 
-    criar_passeio_turistico('Projeto Tamar', 'Tartaruga Marinha', '90.123.456/0001-09', Data(5, 6, 2015))
-    criar_passeio_turistico('Projeto Tamar', 'Pirarucu', '34.567.890/0001-03', Data(3, 3, 2018))
+    criar_passeio_turistico('Projeto Tamar', '90.123.456/0001-09', Data(5, 6, 2015))
+    criar_passeio_turistico('Projeto Tamar', '34.567.890/0001-03', Data(3, 3, 2018))
 
-    criar_passeio_turistico('Mundo Submarino', 'Cavalo-marinho', '01.234.567/0001-10', Data(30, 5, 2011))
-    criar_passeio_turistico('Mundo Submarino', 'Estrela do Mar', '12.345.678/0001-01', Data(1, 6, 2011))
+    criar_passeio_turistico('Mundo Submarino', '01.234.567/0001-10', Data(30, 5, 2011))
+    criar_passeio_turistico('Mundo Submarino', '12.345.678/0001-01', Data(1, 6, 2011))
 
-    criar_passeio_turistico('Aquário de Ubatuba', 'Pirarucu', '45.678.901/0001-04', Data(8, 7, 2019))
-    criar_passeio_turistico('Aquário de Ubatuba', 'Golfinho', '23.456.789/0001-02', Data(9, 7, 2019))
+    criar_passeio_turistico('Aquário de Ubatuba', '45.678.901/0001-04', Data(8, 7, 2019))
+    criar_passeio_turistico('Aquário de Ubatuba', '23.456.789/0001-02', Data(9, 7, 2019))
 
-    criar_passeio_turistico('Oceanário de Aracaju', 'Golfinho', '78.901.234/0001-07', Data(14, 8, 2020))
-    criar_passeio_turistico('Oceanário de Aracaju', 'Tubarão', '90.123.456/0001-09', Data(15, 8, 2020))
+    criar_passeio_turistico('Oceanário de Aracaju', '78.901.234/0001-07', Data(14, 8, 2020))
+    criar_passeio_turistico('Oceanário de Aracaju', '90.123.456/0001-09', Data(15, 8, 2020))
 
-    criar_passeio_turistico('Aquário Amazônico', 'Peixe-boi', '56.789.012/0001-05', Data(15, 11, 2017))
-
-
+    criar_passeio_turistico('Aquário Amazônico', '56.789.012/0001-05', Data(15, 11, 2017))
 
 
 
@@ -104,7 +102,7 @@ def imprimir_somente_para_alinhar_formatação():
  for índice, aquario in enumerate(get_aquarios().values()): print(aquario)
  print('\nAnimais Aquáticos dos Aquários:')
  for aquario in get_aquarios().values():
-  for animal in aquario.animal_aquatico.values(): print(animal)
+  for animal in aquario.animais_aquaticos.values(): print(animal)
 
 
 if __name__ == '__main__':
@@ -118,7 +116,7 @@ if __name__ == '__main__':
     print(' - Animais Aquáticos : nome - habitat - peso - risco de extinção')
     for índice, aquario in enumerate(get_aquarios().values()):
         imprimir_objeto(índice, str(aquario))
-        imprimir_objetos_internos(aquario.animal_aquatico.values())
+        imprimir_objetos_internos(aquario.animais_aquaticos.values())
 
     cadastrar_passeios_turisticos()
     cabeçalho = 'Passeios Turísticos : nome do aquário - nome do animal aquático - nome da escola - data do passeio'
@@ -135,8 +133,8 @@ if __name__ == '__main__':
     filtros, selecionados = selecionar_passeios_turisticos(Data(1, 1, 2012), peso_minimo_animal=150)
     imprimir_objetos_associação_filtros(cabeçalho_filtros, selecionados, filtros)
 
-    filtros, selecionados = selecionar_passeios_turisticos(Data(1, 1, 2012), 150, max_alunos_escola=2000)
+    filtros, selecionados = selecionar_passeios_turisticos(Data(1, 1, 2012), 150, max_alunos_escola=1999)
     imprimir_objetos_associação_filtros(cabeçalho_filtros, selecionados, filtros)
 
-    filtros, selecionados = selecionar_passeios_turisticos(Data(1, 1, 2012), 150, 2000, cidade_aquario='Recife - PE')
+    filtros, selecionados = selecionar_passeios_turisticos(Data(1, 1, 2012), 150, 1999, cidade_aquario='Recife - PE')
     imprimir_objetos_associação_filtros(cabeçalho_filtros, selecionados, filtros)
