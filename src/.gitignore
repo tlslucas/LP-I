@@ -1,0 +1,5 @@
+*.pdf
+*.doc
+entidades/__pycache__
+util/__pycache__
+controle/__pycache__
